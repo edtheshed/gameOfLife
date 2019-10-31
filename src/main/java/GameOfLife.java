@@ -1,11 +1,19 @@
 public class GameOfLife {
+
+    boolean[][] board;
+
     public boolean[][] play(boolean[][] board) {
-        for (int row = 0; row < board.length; row++) {
-            for (int column = 0; column < board[row].length; column++) {
-                board[row][column] = false;
+        this.board = board;
+        for (int row = 0; row < this.board.length; row++) {
+            for (int column = 0; column < this.board[row].length; column++) {
+                killCell(row, column);
             }
         }
-        board[0][1] = true;
-        return board;
+       this.board[0][1] = true;
+        return this.board;
+    }
+
+    private void killCell(int row, int column) {
+        board[row][column] = false;
     }
 }
