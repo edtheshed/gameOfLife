@@ -1,5 +1,5 @@
 public class GameOfLife {
-    public boolean[][] play() {
-        return new boolean[10][10];
+    public boolean[][] play(boolean[][] board) {
+        return board;
     }
 }

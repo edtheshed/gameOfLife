@@ -14,6 +14,7 @@ public class GameOfLifeShould {
 
     @Test
     void haveDeadCellWhenGameIsInitialised() {
-        assertFalse(gameOfLife.play()[0][0]);
+        boolean[][] board = new boolean[10][10];
+        assertFalse(gameOfLife.play(board)[0][0]);
     }
 }
