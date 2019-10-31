@@ -7,21 +7,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GameOfLifeShould {
 
     private GameOfLife gameOfLife;
+    private boolean[][] board;
 
     @BeforeEach
     void setUp() {
         gameOfLife = new GameOfLife();
+        board = new boolean[10][10];
     }
 
     @Test
     void haveDeadCellWhenGameIsInitialised() {
-        boolean[][] board = new boolean[10][10];
         assertFalse(gameOfLife.play(board)[0][0]);
     }
 
     @Test
     void haveALiveCellWith2NeighboursWhenPlay() {
-        boolean[][] board = new boolean[10][10];
         board[0][0] = true;
         board[0][1] = true;
         board[1][0] = true;
