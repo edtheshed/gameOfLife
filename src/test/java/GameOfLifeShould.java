@@ -27,4 +27,12 @@ public class GameOfLifeShould {
         board[1][0] = true;
         assertTrue(gameOfLife.play(board)[0][0]);
     }
+
+    @Test
+    void haveADeadCellWith1NeighboursWhenPlay() {
+        board[0][0] = true;
+        board[0][1] = true;
+        board[0][2] = true;
+        assertFalse(gameOfLife.play(board)[0][2]);
+    }
 }
