@@ -22,17 +22,20 @@ public class GameOfLifeShould {
 
     @Test
     void haveALiveCellWith2NeighboursWhenPlay() {
+        create3AliveCells();
+        assertTrue(gameOfLife.play(board)[0][1]);
+    }
+
+    private void create3AliveCells() {
         board[0][0] = true;
         board[0][1] = true;
-        board[1][0] = true;
-        assertTrue(gameOfLife.play(board)[0][0]);
+        board[0][2] = true;
     }
 
     @Test
     void haveADeadCellWith1NeighboursWhenPlay() {
-        board[0][0] = true;
-        board[0][1] = true;
-        board[0][2] = true;
+        create3AliveCells();
         assertFalse(gameOfLife.play(board)[0][2]);
     }
+
 }
