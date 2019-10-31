@@ -17,13 +17,13 @@ public class GameOfLifeShould {
 
     @Test
     void haveDeadCellWhenGameIsInitialised() {
-        assertFalse(gameOfLife.play(board)[0][0]);
+        assertFalse(gameOfLife.cycleLife(board)[0][0]);
     }
 
     @Test
     void haveALiveCellWith2NeighboursWhenPlay() {
         create3AliveCells();
-        assertTrue(gameOfLife.play(board)[0][1]);
+        assertTrue(gameOfLife.cycleLife(board)[0][1]);
     }
 
     private void create3AliveCells() {
@@ -35,7 +35,7 @@ public class GameOfLifeShould {
     @Test
     void haveADeadCellWith1NeighboursWhenPlay() {
         create3AliveCells();
-        assertFalse(gameOfLife.play(board)[0][2]);
+        assertFalse(gameOfLife.cycleLife(board)[0][2]);
     }
 
 }

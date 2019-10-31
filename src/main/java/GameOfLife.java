@@ -2,7 +2,7 @@ public class GameOfLife {
 
     boolean[][] board;
 
-    public boolean[][] play(boolean[][] board) {
+    public boolean[][] cycleLife(boolean[][] board) {
         this.board = board;
         iterateBoardToKillCells();
         this.board[0][1] = true;
