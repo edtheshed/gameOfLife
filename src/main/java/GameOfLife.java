@@ -1,5 +1,3 @@
-import javafx.geometry.Pos;
-
 public class GameOfLife {
 
     boolean[][] board;
@@ -9,20 +7,32 @@ public class GameOfLife {
         this.board = board;
         stateBoard = BoardTranslator.toStateBoard(this.board);
 
-        prepareNextCycle();
-        updateAllCells();
+        cycleGame();
 
         this.board = BoardTranslator.toBoolBoard(stateBoard);
 
         return this.board;
     }
 
+    private void cycleGame() {
+        for (int i = 0; i < 100; i++) {
+            prepareNextCycle();
+            updateAllCells();
+        }
+    }
+
     private void updateAllCells() {
         for (int row = 0; row < stateBoard.length; row++) {
             for (int column = 0; column < stateBoard[row].length; column++) {
                 stateBoard[row][column] = stateBoard[row][column].setCellState();
+                System.out.print(stateBoard[row][column].isAlive() ? "X " : ". ");
             }
+            System.out.println("");
         }
+        System.out.println("");
+        System.out.println("");
+        try {Thread.sleep(250);}
+        catch (InterruptedException e) {}
     }
 
     private void prepareNextCycle() {
@@ -39,45 +49,51 @@ public class GameOfLife {
                 + countDiagonalNeighbours(row, column);
     }
 
-    private boolean isInXBounds(int cell) {
-        return (cell != 0 || cell != stateBoard.length);
-    }
-
-
-
-    private boolean isInYBounds(int cell) {
-        return (cell != 0 || cell != stateBoard[0].length);
-    }
-
     private int countRowNeighbours(int cell, int row) {
         int neighbours = 0;
-        if (stateBoard[cell - 1][row].isAlive() && isInXBounds(cell))
-            neighbours++;
-        if (stateBoard[cell + 1][row].isAlive() && isInXBounds(cell))
-            neighbours++;
+        if (cell != 0) {
+            if (stateBoard[cell - 1][row].isAlive())
+                neighbours++;
+        }
+        if (cell != stateBoard.length-1) {
+            if (stateBoard[cell + 1][row].isAlive())
+                neighbours++;
+        }
         return neighbours;
     }
 
     private int countColumnNeighbours(int cell, int row) {
         int neighbours = 0;
-        if (stateBoard[cell][row - 1].isAlive() && isInYBounds(row))
-            neighbours++;
-        if (stateBoard[cell][row + 1].isAlive() && isInYBounds(row))
-            neighbours++;
+        if (row != 0) {
+            if (stateBoard[cell][row - 1].isAlive())
+                neighbours++;
+        }
+        if (row != stateBoard.length-1) {
+            if (stateBoard[cell][row + 1].isAlive())
+                neighbours++;
+        }
         return neighbours;
     }
 
 
     private int countDiagonalNeighbours(int cell, int row) {
         int neighbours = 0;
-        if (stateBoard[cell - 1][row - 1].isAlive() && isInXBounds(cell) && isInYBounds(row))
-            neighbours++;
-        if (stateBoard[cell + 1][row + 1].isAlive() && isInXBounds(cell) && isInYBounds(row))
-            neighbours++;
-        if (stateBoard[cell + 1][row - 1].isAlive() && isInXBounds(cell) && isInYBounds(row))
-            neighbours++;
-        if (stateBoard[cell - 1][row + 1].isAlive() && isInXBounds(cell) && isInYBounds(row))
-            neighbours++;
+        if (cell != 0 && row != 0){
+            if (stateBoard[cell - 1][row - 1].isAlive())
+                neighbours++;
+        }
+        if (cell != stateBoard.length-1 && row != stateBoard[cell].length-1) {
+            if (stateBoard[cell + 1][row + 1].isAlive())
+                neighbours++;
+        }
+        if (cell != stateBoard.length-1 && row != 0) {
+            if (stateBoard[cell + 1][row - 1].isAlive())
+                neighbours++;
+        }
+        if (cell != 0 && row != stateBoard[cell].length-1) {
+            if (stateBoard[cell - 1][row + 1].isAlive())
+                neighbours++;
+        }
         return neighbours;
     }
 

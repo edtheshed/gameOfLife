@@ -1,10 +1,9 @@
 public class DeadCell extends Cell implements ICellState {
     @Override
     public void setNextState(int amountOfNeighbours) {
+        nextCell = this;
         if (amountOfNeighbours == 3)
             nextCell = new AliveCell();
-        else
-            nextCell = this;
     }
 
     @Override
