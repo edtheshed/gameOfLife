@@ -37,5 +37,4 @@ public class GameOfLifeShould {
         create3AliveCells();
         assertFalse(gameOfLife.cycleLife(board)[0][2]);
     }
-
 }

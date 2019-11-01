@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
-public class Cell {
+public abstract class Cell {
+    ICellState nextCell;
 }
